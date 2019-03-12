@@ -1,45 +1,47 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
-class EvenAndOdd extends Component{
+class EvenAndOdd extends Component {
 
-    Constructor(){
-        super()
-        this.state = {
-            evenArray: [],
-            oddArray: [],
-            userInput: ""
-        }
+  constructor(){
+    super()
+
+    this.state = {
+      evenArray: [],
+      oddArray: [],
+      userInput: ''
     }
+  }
+
+  handleChange(val){
+    this.setState({ userInput: val })
+  }
+
+  assignEvenAndOdds(userInput){
+    let arr = userInput.split(',')
+    let evens = []
+    let odds = []
+
+    for(let i=0; i<arr.length; i++){
+      if(arr[i] % 2 === 0){
+        evens.push(parseInt(arr[i], 10))
+      }else{
+        odds.push( parseInt(arr[i], 10))
+      }
+    }
+    this.setState({
+      evenArray: evens, oddArray: odds
+    })
+  }
+  render(){
+    return (
+      <div  className='puzzleBox evenAndOddPB'>
+        <h4>Evens and Odds</h4>
+        <input className='inputLine' onChange={(e) => this.handleChange(e.target.value) }></input>
+        <button className='confirmationButton' onClick={ () => {this.assignEvenAndOdds(this.state.userInput)}}>Split</button>
+        <span className='resultBox'> Evens: {JSON.stringify(this.state.evenArray)}</span>
+        <span className='resultBox'> Odds: {JSON.stringify(this.state.oddArray)}</span>
+      </div>
+    )
+  }
 }
-    handleUpdateUserInput(value){
-        this.State({
-            userInput: value
-        })
-    }
-    handleUpdateEvenAndOdd(value){
-        for(let i=0; i<evenArray.length; i++){
-            if(evenArray[i] % 2 === 0){
-                evenArray.push(evenArray[i])
-            }
-         } else {
-            oddArray.push(evenArray[i])
-        }
-    }
-        
-    
-
-    render(){
-        return (
-            <div className='puzzleBox EvenAndOdd'>
-              <h4>'Evens and Odds'</h4>
-              <input className='resultsBox' onChange= {(e) => this.handleUpdateUserInput(e.target.value)}
-              value={this.state.result}/> 
-              <button className='confirmationButton' onClick={() => this.handleUpdateEvenAndOdd()}>Solve Toy</button>
-              <span className='resultsBox'></span>
-              <span className='resultsbox'></span>
-            </div>
-        )
-    }
-
-
 export default EvenAndOdd
