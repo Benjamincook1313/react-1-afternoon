@@ -4,7 +4,7 @@ class FilterString extends Component {
   constructor(){
     super()
       this.state = {
-        names: ['Chris', 'Spencer', 'Laura', 'Nathan', 'Benjamin', 'Matthew', 'Caitlin'],
+        names: ['Chris', 'Laura', 'Nathan', 'Benjamin'],
         userInput: '',
         filteredNames: []
       }
@@ -28,7 +28,7 @@ class FilterString extends Component {
   render() {
     return (
       <div className='puzzleBox filterStringPB'>
-        <h4>Filter filteredNames</h4>
+        <h4>Filter Names</h4>
         <span className='puzzleText'>Names: { JSON.stringify(this.state.names, null, 10) }</span>
         <input className='inputLine' onChange={ (e) => {this.handleChange(e.target.value)} }></input>
         <button className='confirmationButton' onClick={ () => this.filterNames(this.state.userInput) }>Filter</button>
